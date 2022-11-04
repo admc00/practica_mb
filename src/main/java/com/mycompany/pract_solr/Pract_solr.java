@@ -21,7 +21,7 @@ public class Pract_solr {
 
     public static void main(String[] args) throws SolrServerException, IOException {
         final SolrClient cliente = new HttpSolrClient.Builder("http://localhost:8983/solr").build();
-        String fileName = "C:\\Users\\antonio diego\\Documents\\UNI\\MB\\CISI\\CISI_ALL_EXTRACT.txt";
+        String fileName = "C:\\Users\\antonio diego\\Documents\\UNI\\MB\\CISI\\CISI.ALL";
         Scanner scan = new Scanner(new File(fileName));
         SolrInputDocument doc = new SolrInputDocument();
         String line = "";
@@ -33,7 +33,7 @@ public class Pract_solr {
             if (line.contains(".I")) {
                 String indice = "";
                 indice = line.substring(3);
-                doc.addField("id", indice);
+                doc.addField("index", indice);
             }
 
             if (line.contains(".T")) {
@@ -49,14 +49,18 @@ public class Pract_solr {
                 }
             }
             if (line.contains(".A")) {
-                line = scan.nextLine();
-                doc.addField("author", line);
+                while (!line.equals(".W")) {
+                    line = scan.nextLine();
+                    if (!line.equals(".W")) {
+                        doc.addField("author", line);
+                    }
+                }
             }
             if (line.contains(".W")) {
                 while (!line.contains(".X")) {
                     line = scan.nextLine();
                     if (!line.contains(".X")) {
-                        texto += line + "\n";
+                        texto += line + " ";
                     } else {
                         doc.addField("text", texto);
                         texto = "";
@@ -69,4 +73,3 @@ public class Pract_solr {
         cliente.commit("pruebas3");
     }
 }
-
