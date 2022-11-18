@@ -21,7 +21,7 @@ public class Pract_solr {
 
     public static void main(String[] args) throws SolrServerException, IOException {
         final SolrClient cliente = new HttpSolrClient.Builder("http://localhost:8983/solr").build();
-        String fileName = "C:\\Users\\antonio diego\\Documents\\UNI\\MB\\CISI\\CISI.ALL";
+        String fileName = "C:\\Users\\antonio diego\\OneDrive - UNIVERSIDAD DE HUELVA\\Documentos\\UNI\\MB\\CISI\\CISI.ALL";
         Scanner scan = new Scanner(new File(fileName));
         SolrInputDocument doc = new SolrInputDocument();
         String line = "";
@@ -33,7 +33,7 @@ public class Pract_solr {
             if (line.contains(".I")) {
                 String indice = "";
                 indice = line.substring(3);
-                doc.addField("index", indice);
+                doc.addField("id", indice);
             }
 
             if (line.contains(".T")) {
