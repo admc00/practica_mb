@@ -21,6 +21,7 @@ public class Pract_solr {
 
     public static void main(String[] args) throws SolrServerException, IOException {
         final SolrClient cliente = new HttpSolrClient.Builder("http://localhost:8983/solr").build();
+        //String fileName = "C:\\Users\\antonio diego\\OneDrive - UNIVERSIDAD DE HUELVA\\Documentos\\UNI\\MB\\CISI\\CISI.ALL";
         String fileName = "C:\\Users\\antonio diego\\OneDrive - UNIVERSIDAD DE HUELVA\\Documentos\\UNI\\MB\\CISI\\CISI.ALL";
         Scanner scan = new Scanner(new File(fileName));
         SolrInputDocument doc = new SolrInputDocument();
